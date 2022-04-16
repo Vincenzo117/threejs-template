@@ -8,6 +8,13 @@ export default class Cube
         this.experience = new Experience()
         this.scene = this.experience.scene
         this.resources = this.experience.resources
+        this.debug = this.experience.debug
+
+        // Debug
+        if(this.debug.active)
+        {
+            this.debugFolder = this.debug.ui.addFolder('Cube')
+        }
 
         this.setGeometry()
         this.setTextures()
@@ -38,5 +45,16 @@ export default class Cube
     {
         this.mesh = new THREE.Mesh(this.geometry, this.material)
         this.scene.add(this.mesh)
+
+        // Debug
+        if(this.debug.active)
+        {
+            this.debugFolder
+                .add(this.mesh.position, 'x')
+                .min(-2)
+                .max(2)
+                .step(0.01)
+                .name('x position')
+        }
     }
 }
