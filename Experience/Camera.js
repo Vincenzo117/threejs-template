@@ -24,7 +24,6 @@ export default class Camera
             1000
         ) 
         this.instance.position.z = 10
-        console.log(this.instance);
         this.scene.add(this.instance)
     }
 
