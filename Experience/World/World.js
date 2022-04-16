@@ -1,6 +1,7 @@
 import * as THREE from 'three'
 import Experience from '../Experience.js'
 import Environment from './Environment.js'
+import Cube from './Cube.js'
 
 export default class World
 {
@@ -10,18 +11,12 @@ export default class World
         this.scene = this.experience.scene
         this.resources = this.experience.resources
 
-        this.testMesh = new THREE.Mesh(
-            new THREE.BoxGeometry(1, 1, 1),
-            new THREE.MeshStandardMaterial({ color:'blue' })
-        )
-        this.scene.add(this.testMesh)
-
-        // Setup
-        this.environment = new Environment()
+        // Wait for resources loading
+        this.resources.on('ready', () =>
+        {
+            // Setup
+            this.cube = new Cube()
+            this.environment = new Environment()
+        })
     }  
-
-    update() 
-    {
-        this.testMesh.rotation.y += 0.1
-    }
 }

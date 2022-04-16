@@ -1,10 +1,10 @@
 export default [
     {
-        name: 'environmentMapTexture',
+        name: 'cubeColorTexture',
         type: 'texture',
         path: 
         [
-            // here are the paths for files
+            '../assets/textures/cube-texture.webp'
         ]
     }
 ]

@@ -31,11 +31,7 @@ export default class Experience
         this.resources = new Resources(sources)
         this.camera = new Camera()
         this.renderer = new Renderer()
-        // Wait for resources
-        this.resources.on('ready', () =>
-        {
-            this.world = new World()
-        })
+        this.world = new World()
         this.environment = new Environment()
 
         // Sizes resize event
