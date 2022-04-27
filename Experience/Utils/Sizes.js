@@ -19,5 +19,40 @@ export default class Sizes extends EventEmitter
 
             this.trigger('resize')
         })
+    
+
+        document.addEventListener('keyup', (event) => 
+        {
+            if(event.key === 'f')
+            this.toggleFullscreen()
+        })
+    }
+
+    toggleFullscreen()
+    {
+        const fullscreenElement = document.fullscreenElement || document.webkitFullscreenElement
+
+        if (!fullscreenElement) 
+        {
+            if (document.body.requestFullscreen) 
+            {
+                document.body.requestFullscreen()
+            }
+            else if (document.body.webkitRequestFullscreen) 
+            {
+                document.body.webkitRequestFullscreen()
+            }
+        }
+        else 
+        {
+            if (document.exitFullscreen) 
+            {
+                document.exitFullscreen()
+            }
+            else if (document.webkitExitFullscreen) 
+            {
+                document.webkitExitFullscreen()
+            }
+        }
     }
 }
