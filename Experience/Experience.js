@@ -61,13 +61,13 @@ export default class Experience
 
     update()
     {
-        if(this.debug.active)
+        if(this.stats.active)
             this.stats.instance.begin()
            
         this.camera.update()
         this.renderer.update()
 
-        if(this.debug.active)
+        if(this.stats.active)
             this.stats.instance.end()
     }
 }
