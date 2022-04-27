@@ -7,6 +7,7 @@ import World from './World/World.js'
 import Environment from './World/Environment.js'
 import Resources from './Utils/Resources.js'
 import Debug from './Utils/Debug.js'
+import Stats from './Utils/Stats.js'
 import sources from './sources.js'
 
 let instance = null
@@ -27,6 +28,7 @@ export default class Experience
 
         // Setup
         this.debug = new Debug()
+        this.stats = new Stats()
         this.sizes = new Sizes()
         this.time = new Time()
         this.scene = new THREE.Scene()
@@ -57,7 +59,13 @@ export default class Experience
 
     update()
     {
+        if(this.debug.active)
+            this.stats.instance.begin()
+           
         this.camera.update()
         this.renderer.update()
+
+        if(this.debug.active)
+            this.stats.instance.end()
     }
 }
