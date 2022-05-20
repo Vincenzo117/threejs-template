@@ -12,62 +12,53 @@ import sources from './sources.js'
 
 let instance = null
 
-export default class Experience 
-{
-    constructor(canvas)
-    {
-        // Singletone class
-        if (instance)
-        {
-            return instance
-        }
-        instance = this
-
-        // Options
-        this.canvas = canvas
-
-        // Setup
-        this.debug = new Debug()
-        this.stats = new Stats()
-        this.sizes = new Sizes()
-        this.time = new Time()
-
-        this.scene = new THREE.Scene()
-        this.resources = new Resources(sources)
-        this.camera = new Camera()
-        this.renderer = new Renderer()  
-        
-        this.world = new World()
-        this.environment = new Environment()
-
-        // Sizes resize event
-        this.sizes.on('resize', () => 
-        {
-            this.resize()
-        })
-
-        // Time tick event
-        this.time.on('tick', () => 
-        {
-            this.update()
-        })
+export default class Experience {
+  constructor(canvas) {
+    // Singletone class
+    if (instance) {
+      return instance
     }
+    instance = this
 
-    resize()
-    {
-        this.camera.resize()
-        this.renderer.resize()
-    }
+    // Options
+    this.canvas = canvas
 
-    update()
-    {
-        if(this.stats.active)
-            this.stats.instance.begin()
-           
-        this.camera.update()
-        this.renderer.update()
+    // Setup
+    this.debug = new Debug()
+    this.stats = new Stats()
+    this.sizes = new Sizes()
+    this.time = new Time()
 
-        if(this.stats.active)
-            this.stats.instance.end()
-    }
+    this.scene = new THREE.Scene()
+    this.resources = new Resources(sources)
+    this.camera = new Camera()
+    this.renderer = new Renderer()
+
+    this.world = new World()
+    this.environment = new Environment()
+
+    // Sizes resize event
+    this.sizes.on('resize', () => {
+      this.resize()
+    })
+
+    // Time tick event
+    this.time.on('tick', () => {
+      this.update()
+    })
+  }
+
+  resize() {
+    this.camera.resize()
+    this.renderer.resize()
+  }
+
+  update() {
+    if (this.stats.active) this.stats.instance.begin()
+
+    this.camera.update()
+    this.renderer.update()
+
+    if (this.stats.active) this.stats.instance.end()
+  }
 }

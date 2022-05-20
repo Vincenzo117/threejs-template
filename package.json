@@ -8,6 +8,7 @@
     "preview": "vite preview"
   },
   "devDependencies": {
+    "prettier": "2.6.2",
     "vite": "^2.9.0"
   },
   "dependencies": {
@@ -15,5 +16,10 @@
     "lil-gui": "^0.16.1",
     "stats.js": "^0.17.0",
     "three": "^0.139.2"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "arrowParens": "avoid"
   }
 }
